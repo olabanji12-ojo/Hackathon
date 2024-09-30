@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<section class="container--events">
+    <h1>Events</h1>
+
+    <div class="events--lists">
+        {% for event in  events %}
+    <a href="{% url 'event' event.id %}">
+        <div class="wrapper--event">
+            <h3>{{event.name}}</h3>
+            <p>{{event.participants.count}} registered</p>
+            <p>Registration deadline: {{event.registration_deadline}}</p>
+        </div>
+    </a>
+            
+        {% endfor %}
+
+    </div>
+</section>
+
+
+<section>
+    <h1>Users</h1>
+    <div class="users--lists section">
+        {% for user in  users %}
+
+        <a href="{% url 'profile' user.id %}">
+
+            <div class="wrapper--user">
+                <img class="user--avatar--sm"  src="{{user.avatar.url}}" alt="user-profile">
+
+                <h4>{{user.name}}</h4>
+            </div>
+
+        </a>
+            
+        {% endfor %}
+    </div>
+
+
+</section>
+
+{% endblock %}
+

@@ -1,0 +1,25 @@
+{% extends 'store/main.html' %}
+
+
+{% block content %}
+
+<h2>Registeration Page</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit">
+</form>
+<p>Already signed Up?</p>
+<a href="{% url 'login_page' %}">Login</a>
+
+{% if messages %}
+    <div>
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'store/main.html' %}
+
+
+{% block content %}
+
+<h3>Enter new password  </h3>
+
+<p>Please enter your new password twice so we can verify you typed it in correctly.</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form}}
+
+    <input type="submit" value="Submit">
+
+
+{% endblock %}
+
+
+
+
+
+

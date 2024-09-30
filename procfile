@@ -1,0 +1,1 @@
+web: py manage.py migrate && gunicorn hackathon.wsgi

@@ -1,0 +1,61 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<!-- Centered Form with Larger Search Box -->
+<div class="d-flex justify-content-center my-3">
+    <form action="" class="w-50">
+        <input type="text" class="form-control form-control-lg" placeholder="Search for products..." name="q">
+    </form>
+</div>
+
+<div class="row">
+    {% for product in products %}
+    <div class="col-lg-4">
+        <img class="thumbnail" src="{{ product.images.url }}">
+        <div class="box-element product">
+            <h6><strong>{{ product.product_name }}</strong></h6>
+            <hr>
+
+            <button data-product={{product.id}} data-action='add'  class=" update-cart    btn btn-outline-secondary add-btn">Add to Cart</button>
+            <a class="btn btn-outline-success" href="#">View</a>
+            <h4 style="display: inline-block; float: right"><strong>${{product.price| floatformat:2 }}</strong></h4>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Add space before pagination -->
+<nav aria-label="Page navigation example" class="mt-4">
+    <ul class="pagination justify-content-center">
+
+		{% if products.has_previous %}
+
+		<li class="page-item"><a class="btn page-link btn--sub" href="?page={{products.previous_page_number}}">&#10094; prev</a></li>
+
+		{% endif %}
+
+		{% for page in paginator.page_range %}
+        
+		{% if page == products.number %}
+		
+		<li class="page-item active"><a class="btn page-link btn--sub" href="?page={{page}}">{{page}}</a></li>
+
+		{% else %}
+
+        <li class="page-item"><a class="btn page-link" href="?page={{page}}">{{page}}</a></li>
+
+		{% endif %}
+
+		{% endfor %}
+
+		{% if products.has_next %}
+
+		<li class="page-item"><a class="btn page-link btn--sub" href="?page={{products.next_page_number}}">&#10095; next</a></li>
+
+		{% endif %}
+	</ul>
+        
+</nav>
+
+{% endblock content %}

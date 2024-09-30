@@ -1,0 +1,27 @@
+{% extends 'store/main.html' %} {% block content %}
+<h2>Login Page</h2>
+<form action="{% url 'login_page' %}" method="POST">
+  {% csrf_token %}
+  <label>Username:</label>
+  <input type="text" name="username" placeholder="Enter username..." />
+  <label>Password:</label>
+  <input type="password" name="password" placeholder="Enter password..." />
+  <input type="submit" value="Submit" />
+</form>
+<p>Haven't signed up yet? </p>
+<a href="{% url 'register_page' %}">Sign Up</a>
+
+<p><a href="{% url 'reset_password' %}">forgotten password</a></p>
+
+
+
+{% if messages %}
+    <div>
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+{% endblock %}
